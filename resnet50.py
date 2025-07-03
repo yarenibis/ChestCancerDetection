@@ -2,7 +2,7 @@ from tensorflow.keras.models import  Model
 from tensorflow.keras.layers import Input, Add, Dense, Activation
 from tensorflow.keras.layers import ZeroPadding2D, BatchNormalization, Flatten, Conv2D
 from tensorflow.keras.layers import AveragePooling2D, MaxPooling2D
-from tensorflow.keras.initializers import glorot_uniform
+from tensorflow.keras.initializers import glorot_uniform  #Ağırlık başlatıcıdır.
 from tensorflow.keras.utils import get_file
 
 
@@ -13,7 +13,11 @@ def identity_block(X, filters):
     
     # first component
     X = Conv2D(filters=F1, kernel_size=(1, 1), strides=(1,1), padding="valid", kernel_initializer=glorot_uniform(seed=0))(X)
+    #Filtrenin dikey ve yatay adım uzunluğu: 1 piksel
+    # glorot: # Ağırlıkları başlatma yöntemi
     X = BatchNormalization(axis=3)(X)
+    #Veriyi normalize eder: Ortalaması 0, standart sapması 1 olacak şekilde dönüştürür.
+    #ağırlıklar daha stabil öğrenilir.
     X = Activation('relu')(X)
     
     # second component
@@ -78,8 +82,8 @@ def ResNet50(input_shape=(224, 224, 3),
     X = MaxPooling2D((3,3), strides=(2,2))(X)
     
     # stage 2
-    X = convolutional_block(X, [64, 64, 256], s=1)
-    X = identity_block(X, [64, 64, 256])
+    X = convolutional_block(X, [64, 64, 256], s=1) #giriş boyutu farklıysa düzeltir
+    X = identity_block(X, [64, 64, 256]) #girişle aynı boyuttaysa sadec eklenir
     X = identity_block(X, [64, 64, 256])
     
     # stage 3
@@ -121,7 +125,7 @@ def ResNet50(input_shape=(224, 224, 3),
                                     WEIGHTS_PATH_NO_TOP,
                                     cache_subdir='models',
                                     md5_hash='a268eb855778b3df3c7506639542a6af')
-            
+
         
         model.load_weights(weights_path)
     
