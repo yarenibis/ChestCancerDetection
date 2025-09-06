@@ -1,49 +1,57 @@
+# 🩺 Chest Cancer Detection with Deep Learning (ResNet50, InceptionV3, VGG16, MobileNet)
 
-# ResNet50-ChestCancer-Detection
+## ! Modellerin sonuçları ile ilgili detaylar **[ChestCancer.pptx]** dosyasında yer almaktadır.
+## 📌 Proje Özeti
+Bu proje, **derin öğrenme tabanlı görüntü sınıflandırma modelleri** kullanılarak göğüs kanseri (chest cancer) tespitini amaçlamaktadır.  
+Tıbbi görüntüler üzerinde kanserli ve sağlıklı dokuları ayırt etmek için farklı CNN mimarileri karşılaştırılmıştır:  
+- ✅ **ResNet50**  
+- ✅ **InceptionV3**  
+- ✅ **VGG16**  
+- ✅ **MobileNet**  
 
-This project implements the ResNet50 architecture from scratch and utilizes it for classifying chest cancer 
-using the Chest CT-scan Images dataset available on Kaggle.
+Amaç, farklı derin ağ mimarilerini karşılaştırarak **doğruluk, hız ve parametre boyutu** açısından en uygun modeli belirlemektir.  
 
-## Project Highlights
+---
 
-- implementation of ResNet50 from scratch.
-- Transfer learning using the ResNet50 model as a backbone.
-- Classification of chest CT scan images.
-- Monitoring and visualizing training and validation accuracy.
+## 🧠 Kullanılan Modeller
+
+### 🔹 ResNet50
+- Skip connection (artı yol) ile **vanishing gradient** sorununu çözer.  
+- Çok katmanlı karmaşık verilerde yüksek doğruluk sağlar.  
+- Eğitim sırasında stabil çalışır ve genellikle **overfitting** yapmaz.  
+
+### 🔹 InceptionV3
+- Her blokta birden fazla filtre boyutu kullanarak çok yönlü özellik öğrenir.  
+- Hem geniş hem derin yapıya sahiptir.  
+- Eğitim süresi uzundur ancak doğruluğu yüksektir.  
+
+### 🔹 VGG16
+- Basit ve düzenli katman yapısına sahiptir.  
+- Tüm katmanlarda **3x3 filtre** kullanır.  
+- Performansı iyidir fakat parametre sayısı çok fazladır → yavaş çalışır ve **overfitting** riski vardır.  
+
+### 🔹 MobileNet
+- **Mobil ve gömülü sistemler** için tasarlanmış hafif mimaridir.  
+- Daha düşük doğruluk elde edebilir, fakat oldukça **hızlı ve verimlidir.**  
+
+---
+
+## 📊 Veri Seti
+- Göğüs kanseri tespiti için kullanılan medikal görüntüler (X-ray veya CT taramaları).  
+- Veriler **[(https://www.kaggle.com/datasets/yarenbi/chest-cancer-detection-dataset)]** üzerinden temin edilmiştir.  
+- Eğitim / Doğrulama / Test oranları: **%70 / %15 / %15**  
+
+---
+
+## ⚙️ Kurulum
+Projeyi çalıştırmak için:  
+
+```bash
+# 1. Gerekli kütüphaneleri yükleyin
+pip install tensorflow keras matplotlib numpy scikit-learn
+
+# 2. Script'leri çalıştırın
 
 
-## Introduction to ResNet
-![resnet50](https://github.com/sevdaimany/ResNet50-ChestCancer-Detection/blob/master/resnet.png)
-
-
-Residual Networks, or ResNets, are a type of deep neural network architecture that was introduced to address the 
-vanishing gradient problem in very deep networks. ResNets achieve this by using skip connections, also known as 
-shortcut connections, to allow the gradients to flow directly through the network, making it easier to train 
-very deep networks.
-
-The core idea behind ResNet is the residual block. Instead of learning the desired output, these blocks learn a 
-residual or the difference between the desired output and the current output. By stacking multiple residual 
-blocks, deep networks can be trained more effectively.
-
-## Dataset
-
-The dataset used for this project is the Chest CT-scan Images dataset, which can be found 
-[here](https://www.kaggle.com/datasets/mohamedhanyyy/chest-ctscan-images).
-
-## Model Evaluation
-
-I have trained and evaluated the ResNet50-based model on the Chest CT-scan Images dataset. Below is a plot 
-illustrating the accuracy of the model on both the training and validation datasets:
-
-![Training and Validation Accuracy 
-Plot](https://github.com/sevdaimany/ResNet50-ChestCancer-Detection/blob/master/train_val_plot.png)
-
-The x-axis represents the training epochs, while the y-axis represents the accuracy.
-
-
-## Additional Resources
-
-- If you want to learn more about the ResNet architecture, you can read this [article on 
-ResNet](https://arxiv.org/abs/1512.03385).
 
 
